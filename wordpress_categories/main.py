@@ -3,11 +3,13 @@ from bs4 import BeautifulSoup
 import csv
 
 
+# get HTML source code from url
 def get_html(url):
     r = requests.get(url)
     return r.text
 
 
+# function to write into CSV file
 def write_csv(data):
     with open('plugins.csv', 'a') as f:
         writer = csv.writer(f)
@@ -16,6 +18,7 @@ def write_csv(data):
                          data['reviews']))
 
 
+# normalize price separator
 def refined(s):
     r = s.split(' ')[0]
     return r.replace(',', '')
@@ -32,7 +35,7 @@ def get_data(html):
         rating = refined(r)
         data = {'name': name,
                 'url': url,
-                'reviews': rating}
+                'reviews': rating}  # create data structure to write into csv
         write_csv(data)
     return len(plugins)
 
