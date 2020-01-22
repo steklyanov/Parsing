@@ -32,5 +32,6 @@ def main():
         for row in reader:
             print(row)
 
+
 if __name__ == '__main__':
     main()
